@@ -5,48 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Egyptian Sayings Widget</title>
     <style>
-        /* Widget Styles */
-        .widget-container {
-            font-family: 'Amiri', serif; /* Beautiful Arabic font */
-            width: 300px; /* Adjust width as needed */
-            margin: 20px auto; /* Center the widget */
+        body {
+            font-family: 'Amiri', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
         .widget {
-            background-image: url('https://i.imgur.com/4AL9K4s.jpg'); /* Background image */
+            background-image: url('https://i.imgur.com/4AL9K4s.jpg');
             background-size: cover;
             background-position: center;
             border: 2px solid #ffcc00;
             border-radius: 10px;
             padding: 15px;
+            width: 250px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
             cursor: grab;
             overflow: hidden;
         }
-
         .text-container {
             position: relative;
             z-index: 2;
-            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background for text */
+            background-color: rgba(255, 255, 255, 0.7);
             padding: 10px;
             border-radius: 5px;
         }
-
         .widget h1 {
             color: #ff6600;
             font-size: 20px;
             margin-bottom: 10px;
         }
-
         .widget p {
             font-size: 16px;
             color: #333;
             line-height: 1.5;
             margin: 10px 0;
         }
-
         .widget button {
             background-color: #ff6600;
             color: white;
@@ -57,18 +57,15 @@
             cursor: pointer;
             margin-top: 10px;
         }
-
         .widget button:hover {
             background-color: #e65c00;
         }
-
         .translation {
             font-size: 14px;
             color: #555;
             font-style: italic;
             margin-top: 10px;
         }
-
         .pronunciation {
             font-size: 14px;
             color: #777;
@@ -77,16 +74,13 @@
     </style>
 </head>
 <body>
-    <!-- Widget Container -->
-    <div class="widget-container">
-        <div class="widget" id="draggableWidget">
-            <div class="text-container">
-                <h1>Egyptian Sayings 🏜️</h1>
-                <p id="saying">Click the button to see a funny Egyptian saying!</p>
-                <p id="translation" class="translation"></p>
-                <p id="pronunciation" class="pronunciation"></p>
-                <button onclick="showSaying()">Get Saying</button>
-            </div>
+    <div class="widget" id="draggableWidget">
+        <div class="text-container">
+            <h1>Egyptian Sayings 🏜️</h1>
+            <p id="saying">Click the button to see a funny Egyptian saying!</p>
+            <p id="translation" class="translation"></p>
+            <p id="pronunciation" class="pronunciation"></p>
+            <button onclick="showSaying()">Get Saying</button>
         </div>
     </div>
 
