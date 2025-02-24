@@ -4,57 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ويكيت مصرية - Egyptian Sayings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_FREE_KEY"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Changa', Arial, sans-serif;
+            font-family: 'Amiri', serif; /* Beautiful Arabic font */
             background-image: url('https://i.imgur.com/4AL9K4s.jpg');
             background-size: cover;
             background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         .widget {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
             border: 2px solid #ffcc00;
             border-radius: 10px;
-            padding: 20px;
-            width: 400px;
+            padding: 15px;
+            width: 250px; /* Compact size */
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            cursor: grab;
+            backdrop-filter: blur(5px); /* Adds a blur effect to the background */
         }
         .widget h1 {
             color: #ff6600;
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 10px;
         }
         .widget p {
-            font-size: 20px;
+            font-size: 16px;
             color: #333;
-            line-height: 1.6;
-            margin: 20px 0;
-        }
-        .widget p::before {
-            content: "“";
-            font-size: 24px;
-            color: #ff6600;
-        }
-        .widget p::after {
-            content: "”";
-            font-size: 24px;
-            color: #ff6600;
+            line-height: 1.5;
+            margin: 10px 0;
         }
         .widget button {
             background-color: #ff6600;
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 8px 16px;
+            font-size: 14px;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
@@ -63,7 +52,7 @@
             background-color: #e65c00;
         }
         .translation {
-            font-size: 16px;
+            font-size: 14px;
             color: #555;
             font-style: italic;
             margin-top: 10px;
@@ -73,52 +62,15 @@
             color: #777;
             margin-top: 5px;
         }
-        .try-it {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
-        .try-it button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .try-it button:hover {
-            background-color: #45a049;
-        }
-        .try-it i {
-            margin-right: 10px;
-        }
-        .feedback {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #ff6600;
-        }
     </style>
 </head>
 <body>
-    <div class="widget">
+    <div class="widget" id="draggableWidget">
         <h1>ويكيت مصرية 🐪</h1>
         <p id="saying">اضغط الزر علشان تشوف مقولة مصرية مضحكة!</p>
         <p id="translation" class="translation">Click the button to see a funny Egyptian saying!</p>
         <p id="pronunciation" class="pronunciation"></p>
         <button onclick="showSaying()">جيب مقولة</button>
-
-        <div class="try-it">
-            <p>Try saying it yourself! 🎤</p>
-            <button onclick="startRecording()">
-                <i class="fas fa-microphone"></i> Record
-            </button>
-            <button onclick="playPronunciation()">
-                <i class="fas fa-volume-up"></i> Listen
-            </button>
-            <p id="feedback" class="feedback"></p>
-        </div>
     </div>
 
     <script>
@@ -189,26 +141,29 @@
             currentIndex = (currentIndex + 1) % sayings.length;
         }
 
-        function startRecording() {
-            const feedbackElement = document.getElementById('feedback');
-            feedbackElement.textContent = "Recording... Say the phrase out loud!";
-            // Simulate recording for now
-            setTimeout(() => {
-                feedbackElement.textContent = "Great job! Keep practicing! 🎉";
-            }, 3000);
-        }
+        // Make the widget draggable
+        const widget = document.getElementById('draggableWidget');
+        let isDragging = false;
+        let offsetX, offsetY;
 
-        function playPronunciation() {
-            const feedbackElement = document.getElementById('feedback');
-            feedbackElement.textContent = "Playing pronunciation...";
+        widget.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - widget.getBoundingClientRect().left;
+            offsetY = e.clientY - widget.getBoundingClientRect().top;
+            widget.style.cursor = 'grabbing';
+        });
 
-            const text = sayings[currentIndex].arabic; // Use Arabic text for TTS
-            responsiveVoice.speak(text, "Arabic Male", {
-                onend: () => {
-                    feedbackElement.textContent = "Pronunciation finished.";
-                }
-            });
-        }
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                widget.style.left = `${e.clientX - offsetX}px`;
+                widget.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            widget.style.cursor = 'grab';
+        });
     </script>
 </body>
 </html>
