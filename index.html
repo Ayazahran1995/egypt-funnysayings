@@ -6,6 +6,7 @@
     <title>ويكيت مصرية - Egyptian Sayings</title>
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_FREE_KEY"></script>
     <style>
         body {
             font-family: 'Changa', Arial, sans-serif;
@@ -198,9 +199,15 @@
         }
 
         function playPronunciation() {
-            const utterance = new SpeechSynthesisUtterance(sayings[currentIndex].pronunciation);
-            utterance.lang = 'ar-EG'; // Set language to Egyptian Arabic
-            speechSynthesis.speak(utterance);
+            const feedbackElement = document.getElementById('feedback');
+            feedbackElement.textContent = "Playing pronunciation...";
+
+            const text = sayings[currentIndex].arabic; // Use Arabic text for TTS
+            responsiveVoice.speak(text, "Arabic Male", {
+                onend: () => {
+                    feedbackElement.textContent = "Pronunciation finished.";
+                }
+            });
         }
     </script>
 </body>
