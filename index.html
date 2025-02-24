@@ -30,23 +30,16 @@
             cursor: grab;
             overflow: hidden;
         }
-        .widget::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent overlay */
-            backdrop-filter: blur(2px); /* Slight blur effect */
-            z-index: 1;
-        }
-        .widget h1,
-        .widget p,
-        .widget button {
+
+        /* Solution 2: Text Background with Padding */
+        .text-container {
             position: relative;
-            z-index: 2; /* Ensure text is above the overlay */
+            z-index: 2; /* Ensure text is above the background */
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background for text */
+            padding: 10px;
+            border-radius: 5px;
         }
+
         .widget h1 {
             color: #ff6600;
             font-size: 20px;
@@ -86,11 +79,13 @@
 </head>
 <body>
     <div class="widget" id="draggableWidget">
-        <h1>Egyptian Sayings 🏜️</h1>
-        <p id="saying">Click the button to see a funny Egyptian saying!</p>
-        <p id="translation" class="translation"></p>
-        <p id="pronunciation" class="pronunciation"></p>
-        <button onclick="showSaying()">Get Saying</button>
+        <div class="text-container">
+            <h1>Egyptian Sayings </h1>
+            <p id="saying">Click the button to see a funny Egyptian saying!</p>
+            <p id="translation" class="translation"></p>
+            <p id="pronunciation" class="pronunciation"></p>
+            <button onclick="showSaying()">More</button>
+        </div>
     </div>
 
     <script>
