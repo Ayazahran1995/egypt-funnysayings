@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Egyptian Sayings Widget</title>
     <style>
+        /* Remove default body margins and padding */
         body {
-            font-family: 'Amiri', serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            font-family: 'Amiri', serif;
+            background-color: transparent; /* Make the background transparent */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100vh; /* Ensure the widget takes up the full iframe height */
         }
+
+        /* Widget Styles */
         .widget {
             background-image: url('https://i.imgur.com/4AL9K4s.jpg');
             background-size: cover;
@@ -29,6 +32,7 @@
             cursor: grab;
             overflow: hidden;
         }
+
         .text-container {
             position: relative;
             z-index: 2;
@@ -36,17 +40,20 @@
             padding: 10px;
             border-radius: 5px;
         }
+
         .widget h1 {
             color: #ff6600;
             font-size: 20px;
             margin-bottom: 10px;
         }
+
         .widget p {
             font-size: 16px;
             color: #333;
             line-height: 1.5;
             margin: 10px 0;
         }
+
         .widget button {
             background-color: #ff6600;
             color: white;
@@ -57,15 +64,18 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
         .widget button:hover {
             background-color: #e65c00;
         }
+
         .translation {
             font-size: 14px;
             color: #555;
             font-style: italic;
             margin-top: 10px;
         }
+
         .pronunciation {
             font-size: 14px;
             color: #777;
@@ -99,7 +109,7 @@
             { 
                 arabic: "جبل ما يهزوش ريح", 
                 english: "A mountain that even the wind can't shake! (Describing someone who's unshakable)", 
-                pronunciation: "Gabal ma yahzoosh reeH!" 
+                pronunciation: "Gabal ma yahzoosh reeh!" 
             },
             { 
                 arabic: "جبت التايهة", 
@@ -110,16 +120,6 @@
                 arabic: "اللي يتلسع من الشوربة ينفخ في الزبادي", 
                 english: "If you get burned by soup, you'll blow on yogurt! (Once bitten, twice shy)", 
                 pronunciation: "Elly yetlasa’ men el-shorba yenfa’ fi el-zabadi!" 
-            },
-            { 
-                arabic: "إيه اللي جابك هنا؟", 
-                english: "What brings you here? (Said sarcastically when someone shows up uninvited)", 
-                pronunciation: "Eh elly gabak hena?" 
-            },
-            { 
-                arabic: "الكلام ده مش مظبوط!", 
-                english: "This doesn't sound right! (When something seems fishy)", 
-                pronunciation: "El-kalam da mesh mazboot!" 
             },
             { 
                 arabic: "انتا فاكرني اجنبي؟", 
