@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ويكيت مصرية - Egyptian Sayings</title>
+    <title>Egyptian Sayings Widget</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Amiri', serif; /* Beautiful Arabic font */
-            background-image: url('https://i.imgur.com/4AL9K4s.jpg');
-            background-size: cover;
-            background-position: center;
+            background-color: #f4f4f4; /* Plain background for the page */
             height: 100vh;
             margin: 0;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .widget {
-            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+            background-image: url('https://i.imgur.com/4AL9K4s.jpg'); /* Background image for the widget */
+            background-size: cover;
+            background-position: center;
             border: 2px solid #ffcc00;
             border-radius: 10px;
             padding: 15px;
@@ -25,7 +28,24 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: absolute;
             cursor: grab;
-            backdrop-filter: blur(5px); /* Adds a blur effect to the background */
+            overflow: hidden;
+        }
+        .widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent overlay */
+            backdrop-filter: blur(2px); /* Slight blur effect */
+            z-index: 1;
+        }
+        .widget h1,
+        .widget p,
+        .widget button {
+            position: relative;
+            z-index: 2; /* Ensure text is above the overlay */
         }
         .widget h1 {
             color: #ff6600;
@@ -66,11 +86,11 @@
 </head>
 <body>
     <div class="widget" id="draggableWidget">
-        <h1>ويكيت مصرية 🐪</h1>
-        <p id="saying">اضغط الزر علشان تشوف مقولة مصرية مضحكة!</p>
-        <p id="translation" class="translation">Click the button to see a funny Egyptian saying!</p>
+        <h1>Egyptian Sayings 🏜️</h1>
+        <p id="saying">Click the button to see a funny Egyptian saying!</p>
+        <p id="translation" class="translation"></p>
         <p id="pronunciation" class="pronunciation"></p>
-        <button onclick="showSaying()">جيب مقولة</button>
+        <button onclick="showSaying()">Get Saying</button>
     </div>
 
     <script>
