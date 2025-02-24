@@ -4,37 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Egyptian Sayings Widget</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        /* Widget Styles */
+        .widget-container {
             font-family: 'Amiri', serif; /* Beautiful Arabic font */
-            background-color: #f4f4f4; /* Plain background for the page */
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 300px; /* Adjust width as needed */
+            margin: 20px auto; /* Center the widget */
         }
+
         .widget {
-            background-image: url('https://i.imgur.com/4AL9K4s.jpg'); /* Background image for the widget */
+            background-image: url('https://i.imgur.com/4AL9K4s.jpg'); /* Background image */
             background-size: cover;
             background-position: center;
             border: 2px solid #ffcc00;
             border-radius: 10px;
             padding: 15px;
-            width: 250px; /* Compact size */
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: absolute;
+            position: relative;
             cursor: grab;
             overflow: hidden;
         }
 
-        /* Solution 2: Text Background with Padding */
         .text-container {
             position: relative;
-            z-index: 2; /* Ensure text is above the background */
+            z-index: 2;
             background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background for text */
             padding: 10px;
             border-radius: 5px;
@@ -45,12 +39,14 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
+
         .widget p {
             font-size: 16px;
             color: #333;
             line-height: 1.5;
             margin: 10px 0;
         }
+
         .widget button {
             background-color: #ff6600;
             color: white;
@@ -61,15 +57,18 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
         .widget button:hover {
             background-color: #e65c00;
         }
+
         .translation {
             font-size: 14px;
             color: #555;
             font-style: italic;
             margin-top: 10px;
         }
+
         .pronunciation {
             font-size: 14px;
             color: #777;
@@ -78,13 +77,16 @@
     </style>
 </head>
 <body>
-    <div class="widget" id="draggableWidget">
-        <div class="text-container">
-            <h1>Egyptian Sayings </h1>
-            <p id="saying">Click the button to see a funny Egyptian saying!</p>
-            <p id="translation" class="translation"></p>
-            <p id="pronunciation" class="pronunciation"></p>
-            <button onclick="showSaying()">More</button>
+    <!-- Widget Container -->
+    <div class="widget-container">
+        <div class="widget" id="draggableWidget">
+            <div class="text-container">
+                <h1>Egyptian Sayings 🏜️</h1>
+                <p id="saying">Click the button to see a funny Egyptian saying!</p>
+                <p id="translation" class="translation"></p>
+                <p id="pronunciation" class="pronunciation"></p>
+                <button onclick="showSaying()">Get Saying</button>
+            </div>
         </div>
     </div>
 
@@ -115,7 +117,16 @@
                 english: "If you get burned by soup, you'll blow on yogurt! (Once bitten, twice shy)", 
                 pronunciation: "Elly yetlasa’ men el-shorba yenfa’ fi el-zabadi!" 
             },
-           
+            { 
+                arabic: "إيه اللي جابك هنا؟", 
+                english: "What brings you here? (Said sarcastically when someone shows up uninvited)", 
+                pronunciation: "Eh elly gabak hena?" 
+            },
+            { 
+                arabic: "الكلام ده مش مظبوط!", 
+                english: "This doesn't sound right! (When something seems fishy)", 
+                pronunciation: "El-kalam da mesh mazboot!" 
+            },
             { 
                 arabic: "انتا فاكرني اجنبي؟", 
                 english: "Do you think I'm foreign or new here? (When someone underestimates you)", 
@@ -147,7 +158,7 @@
             currentIndex = (currentIndex + 1) % sayings.length;
         }
 
-        // Make the widget draggable
+        // Make the widget draggable (optional)
         const widget = document.getElementById('draggableWidget');
         let isDragging = false;
         let offsetX, offsetY;
